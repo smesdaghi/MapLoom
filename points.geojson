@@ -1,0 +1,5 @@
+{"type":"FeatureCollection","features":[
+{"type":"Feature","id":"AFG","properties":{"name":"Afghanistan"},"geometry": { "type": "Point", "coordinates": [ -87.196659544357374, 14.086365055393321 ] }},
+{"type":"Feature","id":"AGO","properties":{"name":"Angola"},"geometry": { "type": "Point", "coordinates": [ -87.186574438462614, 14.094523385742313 ] }},
+{"type":"Feature","id":"ALB","properties":{"name":"Albania"},"geometry": { "type": "Point", "coordinates": [ -77.356340003830937, 38.958614576194158 ] }}
+]}

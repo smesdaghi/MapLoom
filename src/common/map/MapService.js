@@ -59,47 +59,65 @@
             label: 'OpenStreetMap',
             metadata: {serverId: 1},
             source: new ol.source.OSM()
-          })
-
-          /*
-          //NOTE: TODO: do not commit
-          new ol.layer.Tile({
-            source: new ol.source.TileWMS({
-              url: 'http://192.168.10.217/geoserver/wms',
-              //url: 'http://geoserver.rogue.lmnsolutions.com/geoserver/wms',
-              params: {
-                //'LAYERS': {'geonode:incidentes_copeco', 'geonode:canchas_de_futbol'}
-                'LAYERS': 'geonode:canchas_de_futbol'
-              },
-              getFeatureInfoOptions: {
-                'method': ol.source.WMSGetFeatureInfoMethod.XHR_GET,
-                'params': {
-                  'INFO_FORMAT': 'application/json',
-                  'FEATURE_COUNT': 50
-                }
-              }
-            })
           }),
-
-          new ol.layer.Tile({
-            source: new ol.source.TileWMS({
-              url: 'http://192.168.10.217/geoserver/wms',
-              //url: 'http://geoserver.rogue.lmnsolutions.com/geoserver/wms',
-              params: {
-                //'LAYERS': 'geonode:incidentes_copeco'
-                'LAYERS': 'geonode:incidentes_copeco'
-              },
-              getFeatureInfoOptions: {
-                'method': ol.source.WMSGetFeatureInfoMethod.XHR_GET,
-                'params': {
-                  'INFO_FORMAT': 'application/json',
-                  'FEATURE_COUNT': 50
-                }
-              }
+          new ol.layer.Vector({
+            source: new ol.source.Vector({
+              parser: new ol.parser.GeoJSON(),
+              url: 'points.geojson'
+            }),
+            style: new ol.style.Style({
+              rules: [
+                new ol.style.Rule({
+                  symbolizers: [
+                    new ol.style.Fill({
+                      color: '#ff0000',
+                      opacity: 1
+                    }),
+                    new ol.style.Stroke({
+                      color: '#000000',
+                      opacity: 1,
+                      width: 2
+                    }),
+                    new ol.style.Shape({
+                      size: 10,
+                      fill: new ol.style.Fill({
+                        color: '#ff0000',
+                        opacity: 1
+                      }),
+                      stroke: new ol.style.Stroke({
+                        color: '#000000',
+                        opacity: 1,
+                        width: 2
+                      })
+                    })
+                  ]
+                })
+              ],
+              symbolizers: [
+                new ol.style.Fill({
+                  color: '#ffff00',
+                  opacity: 0.8
+                }),
+                new ol.style.Stroke({
+                  color: '#ff8000',
+                  opacity: 0.8,
+                  width: 3
+                }),
+                new ol.style.Shape({
+                  size: 10,
+                  fill: new ol.style.Fill({
+                    color: '#ffff00',
+                    opacity: 0.8
+                  }),
+                  stroke: new ol.style.Stroke({
+                    color: '#ff8000',
+                    opacity: 0.8,
+                    width: 3
+                  })
+                })
+              ]
             })
           })
-          */
-
         ],
         controls: ol.control.defaults().extend([
           new ol.control.FullScreen(),
@@ -123,6 +141,7 @@
           zoom: 14
         })
       });
+
 
       // Defines default vector style
       ol.style.setDefault(new ol.style.Style({
@@ -179,6 +198,7 @@
         ]
       }));
 
+
       map.on('dragend', function() {
         if (dragZoomActive === false) {
           return;
@@ -203,3 +223,98 @@
     };
   });
 }());
+/*
+ ,
+ style: new ol.style.Style({rules: [
+ new ol.style.Rule({
+ symbolizers: [
+ new ol.style.Fill({
+ color: 'white',
+ opacity: 0.6
+ }),
+ new ol.style.Stroke({
+ color: '#319FD3',
+ opacity: 1
+ })
+ ]
+ }),
+ new ol.style.Rule({
+ maxResolution: 5000,
+ symbolizers: [
+ new ol.style.Text({
+ color: 'black',
+ text: ol.expr.parse('name'),
+ fontFamily: 'Calibri,sans-serif',
+ fontSize: 12,
+ stroke: new ol.style.Stroke({
+ color: 'white',
+ width: 3
+ })
+ })
+ ]
+ })
+ ]})
+ })
+ /*,
+ new ol.layer.Vector({
+ source: new ol.source.Vector({
+ source: new ol.source.Vector({
+ parser: new ol.parser.KML(),
+ url: '2012_Earthquakes_Mag5.kml'
+ })
+ }),
+ style: new ol.style.Style({
+ symbolizers: [
+ new ol.style.Shape({
+ size: ol.expr.parse('5 + 20 * (magnitude - 5)'),
+ fill: new ol.style.Fill({
+ color: '#ff9900',
+ opacity: 0.4
+ }),
+ stroke: new ol.style.Stroke({
+ color: '#ffcc00',
+ opacity: 0.2
+ })
+ })
+ ]
+ })
+ })
+ /*
+ //NOTE: TODO: do not commit
+ new ol.layer.Tile({
+ source: new ol.source.TileWMS({
+ url: 'http://192.168.10.217/geoserver/wms',
+ //url: 'http://geoserver.rogue.lmnsolutions.com/geoserver/wms',
+ params: {
+ //'LAYERS': {'geonode:incidentes_copeco', 'geonode:canchas_de_futbol'}
+ 'LAYERS': 'geonode:canchas_de_futbol'
+ },
+ getFeatureInfoOptions: {
+ 'method': ol.source.WMSGetFeatureInfoMethod.XHR_GET,
+ 'params': {
+ 'INFO_FORMAT': 'application/json',
+ 'FEATURE_COUNT': 50
+ }
+ }
+ })
+ }),
+
+ new ol.layer.Tile({
+ source: new ol.source.TileWMS({
+ url: 'http://192.168.10.217/geoserver/wms',
+ //url: 'http://geoserver.rogue.lmnsolutions.com/geoserver/wms',
+ params: {
+ //'LAYERS': 'geonode:incidentes_copeco'
+ 'LAYERS': 'geonode:incidentes_copeco'
+ },
+ getFeatureInfoOptions: {
+ 'method': ol.source.WMSGetFeatureInfoMethod.XHR_GET,
+ 'params': {
+ 'INFO_FORMAT': 'application/json',
+ 'FEATURE_COUNT': 50
+ }
+ }
+ })
+ })
+ */
+

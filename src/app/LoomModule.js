@@ -7,13 +7,13 @@
     'loom_diff',
     'loom_diff_controller',
     'loom_modal',
-    'loom_addlayers',
+    //'loom_addlayers',
     'loom_arrangeable',
-    'loom_layers',
+    //'loom_layers',
     'loom_geogit',
     'loom_pulldown',
     'loom_pulldown_controller',
-    'loom_feature_info_box',
+    //'loom_feature_info_box',
     'loom_utils'
   ]);
 }());
